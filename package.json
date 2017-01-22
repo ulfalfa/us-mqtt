@@ -10,5 +10,9 @@
     "mocha": "^3.2.0",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0"
-  }
+  },
+  "repository": "https://github.com/ulfalfa/us-mqtt.git",
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+ }
 }
