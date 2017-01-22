@@ -1,0 +1,14 @@
+{
+  "name": "us-mqtt",
+  "version": "0.0.1",
+  "description": "A mqtt helper library",
+  "main": "index.js",
+  "author": "Ulfalfa",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7",
+    "sinon-chai": "^2.8.0"
+  }
+}
