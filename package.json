@@ -14,5 +14,5 @@
   "repository": "https://github.com/ulfalfa/us-mqtt.git",
   "scripts": {
     "test": "node_modules/.bin/mocha"
- }
+  }
 }
