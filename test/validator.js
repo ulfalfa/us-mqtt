@@ -1,6 +1,5 @@
 const validTopic = require('../index').validTopic;
-const isPattern = require('../index').isPattern;
-const validPattern = require('../index').validPattern;
+const mqtt = require('../index');
 
 var expect    = require('chai').expect;
 
@@ -24,25 +23,21 @@ describe('Topic and pattern validator', function() {
       expect(validTopic('/for/B+aR//baz/')).to.be.false;
     });
 
+    it('joins and splits', function() {
+      expect(mqtt.split('foo/bar/baz')).to.be.deep.equal(['foo','bar','baz']);
+      expect(mqtt.join('foo','bar','baz')).to.be.equal('foo/bar/baz');
+    });
+
+    it('slices', function() {
+      let topic = 'foo/bar/baz/test'
+      expect(mqtt.slice(topic,0,1)).to.be.equal('foo');
+      expect(mqtt.slice(topic,0)).to.be.equal('foo/bar/baz/test');
+      expect(mqtt.slice(topic,-1)).to.be.equal('test');
+      expect(mqtt.slice(topic,1,3)).to.be.equal('bar/baz');
+      expect(mqtt.slice(topic,2,2)).to.be.equal('');
+      expect(mqtt.slice(topic,-10)).to.be.equal('foo/bar/baz/test');
+    });
+
   });
-  /*  describe('Pattern', function() {
-      it('checks pattern', function() {
-        expect(isPattern('/')).to.be.true;
-        expect(isPattern('#')).to.be.true;
-        expect(isPattern('for/+//baz')).to.be.true;
-        expect(isPattern('/for/BaR//baz/#')).to.be.true;
-        expect(isPattern('/for/++//baz/#')).to.be.false;
-        expect(isPattern('foo/bar/baz')).to.be.false;
-      });
-      it('checks valid pattern', function() {
-        expect(validPattern('/')).to.be.false;
-        expect(validPattern('#')).to.be.true;
-        expect(validPattern('for/+//baz')).to.be.true;
-        expect(validPattern('/for/BaR//baz/#')).to.be.true;
-        expect(validPattern('/for/++//baz/#')).to.be.false;
-        expect(validPattern('foo/bar/baz')).to.be.true;
-
-      });
-
-    });*/
+  
 });

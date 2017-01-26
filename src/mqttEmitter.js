@@ -5,6 +5,15 @@ class MqttEmitter  {
     this._handlers = new Map();
   }
 
+  get handlers () {
+    let retVal = [];
+    this._handlers.forEach((value,key)=>{
+
+      retVal.push(key+':'+value.listeners.length);
+    });
+    return retVal;
+  }
+
   on (topicPattern, listener) {
 
     var handler = this._handlers.get(topicPattern);
@@ -56,6 +65,8 @@ class MqttEmitter  {
 
     return this;
   }
+
+
 }
 
 module.exports = MqttEmitter;

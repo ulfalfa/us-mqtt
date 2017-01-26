@@ -1,6 +1,6 @@
 {
   "name": "us-mqtt",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "A mqtt helper library",
   "main": "index.js",
   "author": "Ulfalfa",
@@ -9,8 +9,6 @@
     "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
     "babel-preset-es2015": "^6.22.0",
-    "babel-preset-es2016": "^6.22.0",
-    "babel-preset-es2017": "^6.22.0",
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "sinon": "^1.17.7",

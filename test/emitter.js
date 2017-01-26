@@ -29,12 +29,15 @@ describe('Mqtt Emitter', function() {
         emitter.on('foo/+/#', spy);
         emitter.on('foo/+/+/test', spy);
         emitter.on('foo/+/+/test', spy);
+        emitter.on('foo/bar/baz/test', spy)
         emitter.emit('foo/bar/baz/test', 'hello world');
-        expect(spy).to.have.been.calledThrice;
+        expect(spy).to.have.callCount(4);
         expect(spy).to.have.been.calledWith({topic: 'foo/bar/baz/test',
           pattern: 'foo/+/#', params: ['bar','baz/test']}, 'hello world');
         expect(spy).to.have.been.calledWith({topic: 'foo/bar/baz/test',
           pattern: 'foo/+/+/test', params: ['bar','baz']}, 'hello world');
+          expect(spy).to.have.been.calledWith({topic: 'foo/bar/baz/test',
+            pattern: 'foo/bar/baz/test', params: []}, 'hello world');
         done();
 
       });
