@@ -1,4 +1,6 @@
-const validTopicRegexp = /^[^#\+]+$/;
+const VALID_TOPIC = /^[^#\+]+$/;
+const VALID_PATTERN =
+  /^(([\+#]{1}|[^\+#]*)\/)?(([\+#]{1}|[^\+#]*)\/{1})*(([\+#]{1}|[^\+#]*))$/;
 const MQTT_SEP = '/';
 
 function join(...topics) {
@@ -14,7 +16,15 @@ function slice(topic, index, count, ...members) {
 }
 
 function validTopic(topic) {
-  return validTopicRegexp.test(topic);
+  return VALID_TOPIC.test(topic);
+}
+
+function validPattern(pattern) {
+  return VALID_PATTERN.test(pattern);
+}
+
+function isPattern(pattern) {
+  return !validTopic(pattern) && validPattern(pattern);
 }
 
 
@@ -22,8 +32,7 @@ module.exports = {
   validTopic: validTopic,
   join: join,
   split:split,
-  slice:slice
-  /*,
+  slice:slice,
   validPattern: validPattern,
-  isPattern: isPattern*/
+  isPattern: isPattern
 };

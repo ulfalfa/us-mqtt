@@ -1,6 +1,6 @@
 {
   "name": "us-mqtt",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A mqtt helper library",
   "main": "index.js",
   "author": "Ulfalfa",

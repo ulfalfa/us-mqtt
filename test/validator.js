@@ -38,6 +38,25 @@ describe('Topic and pattern validator', function() {
       expect(mqtt.slice(topic,-10)).to.be.equal('foo/bar/baz/test');
     });
 
+    it('checks valid pattern', function() {
+      expect(mqtt.validPattern('')).to.be.true;
+      expect(mqtt.validPattern('+/foo')).to.be.true;
+      expect(mqtt.validPattern('foo/+')).to.be.true;
+      expect(mqtt.validPattern('foo/+/baz')).to.be.true;
+      expect(mqtt.validPattern('#/foo')).to.be.true;
+      expect(mqtt.validPattern('foo/#')).to.be.true;
+      expect(mqtt.validPattern('foo/#/baz')).to.be.true;
+      expect(mqtt.validPattern('foo/##/baz')).to.be.false;
+      expect(mqtt.validPattern('++/foo/baz')).to.be.false;
+      expect(mqtt.validPattern('for/Ba#R//baz')).to.be.false;
+      expect(mqtt.validPattern('/for/B+aR//baz/')).to.be.false;
+    });
+    it('checks is a pattern', function() {
+      expect(mqtt.isPattern('')).to.be.true;
+      expect(mqtt.isPattern('+/foo')).to.be.true;
+      expect(mqtt.isPattern('foo/bar')).to.be.false;
+    });
+
   });
-  
+
 });
